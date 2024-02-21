@@ -49,11 +49,4 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiExceptionResponse, HttpStatus.NOT_FOUND);
     }
 
-
-
-
-
-
-
-
 }
