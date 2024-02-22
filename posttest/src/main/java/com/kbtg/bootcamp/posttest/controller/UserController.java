@@ -1,16 +1,22 @@
 package com.kbtg.bootcamp.posttest.controller;
 
+import com.kbtg.bootcamp.posttest.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     // See list of lotteries
     @GetMapping("/lotteries")
     public String getLotteries() {
         return "Get lotteries success";
     }
-
 
     // Buy lotteries
     @PostMapping("/users/{userId}/lotteries/{ticketId}")
