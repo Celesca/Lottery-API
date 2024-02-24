@@ -21,7 +21,6 @@ public class Lottery {
     private Integer price;
 
     @NotNull
-    @Positive
     private Integer amount;
 
     public Lottery(){
