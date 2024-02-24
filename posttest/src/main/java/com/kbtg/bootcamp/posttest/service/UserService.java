@@ -4,6 +4,7 @@ import com.kbtg.bootcamp.posttest.model.Lottery;
 import com.kbtg.bootcamp.posttest.repository.LotteryRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,14 +18,26 @@ public class UserService {
     }
 
     // Get all lotteries
-    public List<Lottery> getAllLotteries() {
+    public List<String> getAllLotteries() {
+
+        // find all ticket id
         List<Lottery> lotteries = lotteryRepository.findAll();
+
         if (lotteries.isEmpty()) {
             return null;
         }
-        return lotteries;
+
+        List<String> ticketIds = new ArrayList<>();
+
+        lotteries.forEach(lottery -> {
+            ticketIds.add(lottery.getTicketid());
+        });
+
+        return ticketIds;
+
     }
 
     // Buy lotteries
+
 
 }

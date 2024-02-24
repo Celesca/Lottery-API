@@ -17,7 +17,7 @@ public class UserController {
 
     // See list of lotteries
     @GetMapping("/lotteries")
-    public List<Lottery> getLotteries() {
+    public List<String> getLotteries() {
         return userService.getAllLotteries();
     }
 
