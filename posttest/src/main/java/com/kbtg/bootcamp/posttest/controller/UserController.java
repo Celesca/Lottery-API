@@ -1,7 +1,10 @@
 package com.kbtg.bootcamp.posttest.controller;
 
+import com.kbtg.bootcamp.posttest.model.Lottery;
 import com.kbtg.bootcamp.posttest.service.UserService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -14,8 +17,8 @@ public class UserController {
 
     // See list of lotteries
     @GetMapping("/lotteries")
-    public String getLotteries() {
-        return "Get lotteries success";
+    public List<Lottery> getLotteries() {
+        return userService.getAllLotteries();
     }
 
     // Buy lotteries
