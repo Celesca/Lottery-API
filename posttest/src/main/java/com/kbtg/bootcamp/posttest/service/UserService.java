@@ -2,6 +2,8 @@ package com.kbtg.bootcamp.posttest.service;
 
 import com.kbtg.bootcamp.posttest.model.Lottery;
 import com.kbtg.bootcamp.posttest.repository.LotteryRepository;
+import com.kbtg.bootcamp.posttest.response.UserGetAllLotteriesResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ public class UserService {
     }
 
     // Get all lotteries
-    public List<String> getAllLotteries() {
+    public ResponseEntity<UserGetAllLotteriesResponse> getAllLotteries() {
 
         // find all ticket id
         List<Lottery> lotteries = lotteryRepository.findAll();
@@ -33,11 +35,15 @@ public class UserService {
             ticketIds.add(lottery.getTicketid());
         });
 
-        return ticketIds;
+        UserGetAllLotteriesResponse response = new UserGetAllLotteriesResponse();
+        response.setTickets(ticketIds);
+
+        return ResponseEntity.ok(response);
 
     }
 
     // Buy lotteries
+
 
 
 }

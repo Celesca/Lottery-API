@@ -1,7 +1,10 @@
 package com.kbtg.bootcamp.posttest.controller;
 
 import com.kbtg.bootcamp.posttest.model.Lottery;
+import com.kbtg.bootcamp.posttest.response.UserGetAllLotteriesResponse;
 import com.kbtg.bootcamp.posttest.service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,15 +20,16 @@ public class UserController {
 
     // See list of lotteries
     @GetMapping("/lotteries")
-    public List<String> getLotteries() {
+    @ResponseStatus(code = HttpStatus.ACCEPTED)
+    public ResponseEntity<UserGetAllLotteriesResponse> getLotteries() {
         return userService.getAllLotteries();
     }
 
     // Buy lotteries
-    @PostMapping("/users/{userId}/lotteries/{ticketId}")
-    public String BuyLotteries(@PathVariable Integer userId, @PathVariable Integer ticketId) {
-        return "Buy lotteries success";
-    }
+//    @PostMapping("/users/{userId}/lotteries/{ticketId}")
+//    public ResponseEntity<List<String>> BuyLottery(@PathVariable Integer userId, @PathVariable Integer ticketId) {
+//        return
+//    }
 
     // List all my lottery tickets
 
