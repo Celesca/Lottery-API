@@ -13,4 +13,5 @@ public class UserGetAllLotteriesResponse {
     public void setTickets(List<String> tickets) {
         this.tickets = tickets;
     }
+
 }

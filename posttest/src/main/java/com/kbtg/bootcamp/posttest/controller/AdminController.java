@@ -1,10 +1,8 @@
 package com.kbtg.bootcamp.posttest.controller;
 
 import com.kbtg.bootcamp.posttest.service.AdminService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/admin")
@@ -17,6 +15,7 @@ public class AdminController {
     }
 
     @PostMapping("/lotteries")
+    @ResponseStatus(code = HttpStatus.CREATED)
     public String createLottery(@RequestBody createLotteryRequest request) {
         return adminService.createLottery(request);
     }

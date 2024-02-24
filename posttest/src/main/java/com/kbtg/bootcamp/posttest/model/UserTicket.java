@@ -21,6 +21,12 @@ public class UserTicket {
 
     public UserTicket() {
     }
+
+    public UserTicket(Integer userid, String ticketid) {
+        this.userid = userid;
+        this.ticketid = ticketid;
+    }
+
     public Integer getId() {
         return id;
     }
