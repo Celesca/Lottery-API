@@ -7,6 +7,7 @@ import com.kbtg.bootcamp.posttest.repository.LotteryRepository;
 import com.kbtg.bootcamp.posttest.repository.UserTicketRepository;
 import com.kbtg.bootcamp.posttest.response.UserBuyLotteriesResponse;
 import com.kbtg.bootcamp.posttest.response.UserGetAllLotteriesResponse;
+import com.kbtg.bootcamp.posttest.response.UserLotteriesResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -62,13 +63,34 @@ public class UserService {
             lotteryRepository.delete(lottery);
         }
 
-        lotteryRepository.save(lottery);
-
         UserTicket transaction = new UserTicket(userId, ticketId.toString());
         userTicketRepository.save(transaction);
 
         return new UserBuyLotteriesResponse(transaction.getId());
-
     }
+
+    // Get user lotteries
+    public UserLotteriesResponse getMyLotteries(Integer userId) {
+        // find all ticket id
+        List<UserTicket> userTickets = userTicketRepository.findByUserId(userId);
+
+        if (userTickets.isEmpty()) {
+            return null;
+        }
+
+        List<String> currentuserIds = new ArrayList<>();
+        userTickets.forEach(userTicket -> {
+            currentuserIds.add(userTicket.getTicketid());
+        });
+
+
+
+        UserLotteriesResponse response = new UserLotteriesResponse();
+        response.setTickets(currentuserIds);
+
+        return response;
+    }
+
+
 
 }
