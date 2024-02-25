@@ -1,8 +1,12 @@
 package com.kbtg.bootcamp.posttest.controller;
 
+import com.kbtg.bootcamp.posttest.model.UserTicket;
 import com.kbtg.bootcamp.posttest.response.UserBuyLotteriesResponse;
 import com.kbtg.bootcamp.posttest.response.UserGetAllLotteriesResponse;
+import com.kbtg.bootcamp.posttest.response.UserLotteriesResponse;
 import com.kbtg.bootcamp.posttest.service.UserService;
+import jakarta.validation.Valid;
+import org.apache.catalina.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,22 +31,25 @@ public class UserController {
 
     // Buy lotteries
     @PostMapping("/users/{userId}/lotteries/{ticketId}")
-    public UserBuyLotteriesResponse BuyLottery(@PathVariable("userId") Integer userId, @PathVariable("ticketId") Integer ticketId) {
+    public UserBuyLotteriesResponse BuyLottery(
+            @Valid
+            @PathVariable("userId") Integer userId,
+            @PathVariable("ticketId") Integer ticketId) {
         return userService.buyLotteries(userId, ticketId);
     }
 
     // List all my lottery tickets
-
     @GetMapping("/users/{userId}/lotteries")
-    public String getMyLotteries(@PathVariable Integer userId) {
-        return "Get my lotteries success";
+    public UserLotteriesResponse getMyLotteries(@Valid
+                                               @PathVariable("userId") Integer userId) {
+        return userService.getMyLotteries(userId);
     }
 
     // Sell back my lottery ticket
     @DeleteMapping("/users/{userId}/lotteries/{ticketId}")
-    public String sellBackMyLotteries(@PathVariable Integer userId, @PathVariable String ticketId) {
+    public String sellBackMyLotteries(@PathVariable("userId") Integer userId,
+                                      @PathVariable("ticketId") String ticketId) {
         return "Sell back my lotteries success";
     }
-
 
 }

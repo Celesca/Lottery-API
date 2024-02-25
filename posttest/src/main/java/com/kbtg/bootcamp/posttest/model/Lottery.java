@@ -2,6 +2,7 @@ package com.kbtg.bootcamp.posttest.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
@@ -14,13 +15,16 @@ public class Lottery {
     @Id
     @NotNull
     @Size(min = 6, max = 6, message = "lotteryNumber must be 6 digits")
+    @Pattern(regexp = "^[0-9]{6}$", message = "lotteryNumber must be 6 numeric digits")
     private String ticketid;
 
     @NotNull
     @Positive
+    @Size(min = 0)
     private Integer price;
 
     @NotNull
+    @Size(min = 0)
     private Integer amount;
 
     public Lottery(){
