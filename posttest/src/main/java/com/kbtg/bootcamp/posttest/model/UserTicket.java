@@ -19,8 +19,8 @@ public class UserTicket {
     private Integer id;
 
     @NotNull
-    @Positive
-    private Integer userid;
+    @Size(min = 10, max = 10, message = "userid must be 10 digits")
+    private String userid;
 
     @NotNull
     @Size(min = 6, max = 6, message = "lotteryNumber must be 6 digits")
@@ -34,7 +34,7 @@ public class UserTicket {
     public UserTicket() {
     }
 
-    public UserTicket(Integer userId, String string, Integer ticketPrice) {
+    public UserTicket(String userId, String string, Integer ticketPrice) {
         this.userid = userId;
         this.ticketid = string;
         this.price = ticketPrice;

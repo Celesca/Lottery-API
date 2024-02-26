@@ -1,4 +1,4 @@
-package com.kbtg.bootcamp.posttest.response;
+package com.kbtg.bootcamp.posttest.user.response;
 
 import lombok.Getter;
 import lombok.Setter;
