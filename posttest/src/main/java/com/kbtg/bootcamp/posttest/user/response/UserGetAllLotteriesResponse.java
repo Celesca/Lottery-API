@@ -9,6 +9,6 @@ import java.util.List;
 @Getter
 public class UserGetAllLotteriesResponse {
 
-    public List<String> tickets;
+	public List<String> tickets;
 
 }

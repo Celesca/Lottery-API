@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeRequests((requests) -> requests
-                        .requestMatchers("/admin/**").authenticated()
-                        .anyRequest().permitAll()
-                )
-                .httpBasic(Customizer.withDefaults())
-                .build();
-    }
+	@Bean
+	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+		return http.csrf(AbstractHttpConfigurer::disable)
+				.authorizeRequests((requests) -> requests
+						.requestMatchers("/admin/**").authenticated()
+						.anyRequest().permitAll()
+				)
+				.httpBasic(Customizer.withDefaults())
+				.build();
+	}
 }

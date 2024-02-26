@@ -6,9 +6,9 @@ import lombok.Getter;
 public class createLotteryResponse
 {
 
-    private final String ticket;
+	private final String ticket;
 
-    public createLotteryResponse(String ticket) {
-        this.ticket = ticket;
-    }
+	public createLotteryResponse(String ticket) {
+		this.ticket = ticket;
+	}
 }

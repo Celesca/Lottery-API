@@ -9,17 +9,17 @@ import java.util.List;
 @Getter
 public class UserGetMyLotteriesResponse {
 
-    private List<String> tickets;
-    private Integer count;
-    private Integer cost;
+	private List<String> tickets;
+	private Integer count;
+	private Integer cost;
 
-    public UserGetMyLotteriesResponse() {
-    }
+	public UserGetMyLotteriesResponse() {
+	}
 
-    public UserGetMyLotteriesResponse(List<String> tickets, Integer count, Integer cost) {
-        this.tickets = tickets;
-        this.count = count;
-        this.cost = cost;
-    }
+	public UserGetMyLotteriesResponse(List<String> tickets, Integer count, Integer cost) {
+		this.tickets = tickets;
+		this.count = count;
+		this.cost = cost;
+	}
 
 }

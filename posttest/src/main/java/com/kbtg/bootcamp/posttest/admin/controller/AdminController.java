@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private final AdminService adminService;
+	private final AdminService adminService;
 
-    public AdminController(AdminService adminService) {
-        this.adminService = adminService;
-    }
+	public AdminController(AdminService adminService) {
+		this.adminService = adminService;
+	}
 
-    @PostMapping("/lotteries")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public createLotteryResponse createLottery(@Valid @RequestBody createLotteryRequestDto request) {
-        return adminService.createLottery(request);
-    }
+	@PostMapping("/lotteries")
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public createLotteryResponse createLottery(@Valid @RequestBody createLotteryRequestDto request) {
+		return adminService.createLottery(request);
+	}
 
 }

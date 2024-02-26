@@ -13,39 +13,39 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class UserController {
 
-    private final UserService userService;
+	private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
 
-    // See list of lotteries
-    @GetMapping("/lotteries")
-    @ResponseStatus(code = HttpStatus.OK)
-    public UserGetAllLotteriesResponse getLotteries() {
-        return userService.getAllLotteries();
-    }
+	// See list of lotteries
+	@GetMapping("/lotteries")
+	@ResponseStatus(code = HttpStatus.OK)
+	public UserGetAllLotteriesResponse getLotteries() {
+		return userService.getAllLotteries();
+	}
 
 
-    // Buy lotteries
-    @PostMapping("/users/{userId}/lotteries/{ticketId}")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public UserBuyLotteriesResponse BuyLottery(@Valid UserBuySellRequestDto requestDto) {
-        return userService.buyLotteries(requestDto);
-    }
+	// Buy lotteries
+	@PostMapping("/users/{userId}/lotteries/{ticketId}")
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public UserBuyLotteriesResponse BuyLottery(@Valid UserBuySellRequestDto requestDto) {
+		return userService.buyLotteries(requestDto);
+	}
 
-    // List all my lottery tickets
-    @GetMapping("/users/{userId}/lotteries")
-    @ResponseStatus(code = HttpStatus.OK)
-    public UserGetMyLotteriesResponse getMyLotteries(@Valid @PathVariable("userId") String userId) {
-        return userService.getMyLotteries(userId);
-    }
+	// List all my lottery tickets
+	@GetMapping("/users/{userId}/lotteries")
+	@ResponseStatus(code = HttpStatus.OK)
+	public UserGetMyLotteriesResponse getMyLotteries(@Valid @PathVariable("userId") String userId) {
+		return userService.getMyLotteries(userId);
+	}
 
-    // Sell back my lottery ticket
-    @DeleteMapping("/users/{userId}/lotteries/{ticketId}")
-    @ResponseStatus(code = HttpStatus.OK)
-    public UserSellLotteriesResponse sellLotteries(@Valid UserBuySellRequestDto requestDto) {
-        return userService.sellLotteries(requestDto);
-    }
+	// Sell back my lottery ticket
+	@DeleteMapping("/users/{userId}/lotteries/{ticketId}")
+	@ResponseStatus(code = HttpStatus.OK)
+	public UserSellLotteriesResponse sellLotteries(@Valid UserBuySellRequestDto requestDto) {
+		return userService.sellLotteries(requestDto);
+	}
 
 }
