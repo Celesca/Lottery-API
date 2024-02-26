@@ -1,5 +1,10 @@
 package com.kbtg.bootcamp.posttest.response;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class UserBuyLotteriesResponse {
 
     public Integer id;
@@ -8,11 +13,4 @@ public class UserBuyLotteriesResponse {
         setId(transactionId);
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }

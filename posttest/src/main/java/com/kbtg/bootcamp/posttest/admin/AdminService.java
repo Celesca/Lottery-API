@@ -1,6 +1,6 @@
-package com.kbtg.bootcamp.posttest.service;
+package com.kbtg.bootcamp.posttest.admin;
 
-import com.kbtg.bootcamp.posttest.controller.createLotteryRequest;
+import com.kbtg.bootcamp.posttest.request.createLotteryRequest;
 import com.kbtg.bootcamp.posttest.exception.BadRequestException;
 import com.kbtg.bootcamp.posttest.model.Lottery;
 import com.kbtg.bootcamp.posttest.repository.LotteryRepository;

@@ -1,4 +1,4 @@
-package com.kbtg.bootcamp.posttest.service;
+package com.kbtg.bootcamp.posttest.user;
 
 import com.kbtg.bootcamp.posttest.exception.NotFoundException;
 import com.kbtg.bootcamp.posttest.model.Lottery;
@@ -7,7 +7,8 @@ import com.kbtg.bootcamp.posttest.repository.LotteryRepository;
 import com.kbtg.bootcamp.posttest.repository.UserTicketRepository;
 import com.kbtg.bootcamp.posttest.response.UserBuyLotteriesResponse;
 import com.kbtg.bootcamp.posttest.response.UserGetAllLotteriesResponse;
-import com.kbtg.bootcamp.posttest.response.UserLotteriesResponse;
+import com.kbtg.bootcamp.posttest.response.UserGetMyLotteriesResponse;
+import com.kbtg.bootcamp.posttest.response.UserSellLotteriesResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -38,9 +39,7 @@ public class UserService {
 
         List<String> ticketIds = new ArrayList<>();
 
-        lotteries.forEach(lottery -> {
-            ticketIds.add(lottery.getTicketid());
-        });
+        lotteries.forEach(lottery -> ticketIds.add(lottery.getTicketid()));
 
         UserGetAllLotteriesResponse response = new UserGetAllLotteriesResponse();
         response.setTickets(ticketIds);
@@ -52,45 +51,61 @@ public class UserService {
     // Buy lotteries
     @Transactional
     public UserBuyLotteriesResponse buyLotteries(Integer userId, Integer ticketId) {
-        // find ticket id
+
         Lottery lottery = lotteryRepository.findByTicketid(ticketId.toString());
         if (lottery == null) {
             throw new NotFoundException("Ticket not found");
         }
+
+        UserTicket transaction = new UserTicket(userId, ticketId.toString(), lottery.getPrice());
+        userTicketRepository.save(transaction);
 
         lottery.setAmount(lottery.getAmount() - 1);
         if (lottery.getAmount() <= 0) {
             lotteryRepository.delete(lottery);
         }
 
-        UserTicket transaction = new UserTicket(userId, ticketId.toString());
-        userTicketRepository.save(transaction);
-
         return new UserBuyLotteriesResponse(transaction.getId());
     }
 
     // Get user lotteries
-    public UserLotteriesResponse getMyLotteries(Integer userId) {
-        // find all ticket id
+    @Transactional
+    public UserGetMyLotteriesResponse getMyLotteries(Integer userId) {
+
         List<UserTicket> userTickets = userTicketRepository.findByUserId(userId);
 
         if (userTickets.isEmpty()) {
-            return null;
+            throw  new NotFoundException("User does not have any ticket or not found user id");
         }
 
-        List<String> currentuserIds = new ArrayList<>();
-        userTickets.forEach(userTicket -> {
-            currentuserIds.add(userTicket.getTicketid());
-        });
+        List<String> currentuserTickets = new ArrayList<>();
+        userTickets.forEach(userTicket -> currentuserTickets.add(userTicket.getTicketid()));
 
+        Integer totalAmount = 0;
+        for (UserTicket userTicket : userTickets) {
+            totalAmount += userTicket.getPrice();
+        }
 
-
-        UserLotteriesResponse response = new UserLotteriesResponse();
-        response.setTickets(currentuserIds);
+        UserGetMyLotteriesResponse response = new UserGetMyLotteriesResponse();
+        response.setTickets(currentuserTickets);
+        response.setCost(totalAmount);
+        response.setCount(currentuserTickets.size());
 
         return response;
     }
 
+    // Sell back my lottery ticket
+    @Transactional
+    public UserSellLotteriesResponse sellLotteries(Integer userId, String ticketId) {
+        // find ticket id
+        UserTicket userTicket = userTicketRepository.findByUserIdAndTicketId(userId, ticketId);
+        if (userTicket == null) {
+            throw new NotFoundException("Ticket not found in user ticket list");
+        }
 
+        userTicketRepository.delete(userTicket);
+
+        return new UserSellLotteriesResponse(ticketId);
+    }
 
 }
