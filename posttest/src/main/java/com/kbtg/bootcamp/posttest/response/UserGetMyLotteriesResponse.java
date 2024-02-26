@@ -7,8 +7,10 @@ import java.util.List;
 
 @Setter
 @Getter
-public class UserGetAllLotteriesResponse {
+public class UserGetMyLotteriesResponse {
 
-    public List<String> tickets;
+    private List<String> tickets;
+    private Integer count;
+    private Integer cost;
 
 }

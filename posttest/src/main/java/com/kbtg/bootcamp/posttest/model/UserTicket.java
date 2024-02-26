@@ -2,10 +2,16 @@ package com.kbtg.bootcamp.posttest.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
-@Table(name = "UserTicket")
+@Table(name = "user_ticket")
 public class UserTicket {
 
     @Id
@@ -17,37 +23,21 @@ public class UserTicket {
     private Integer userid;
 
     @NotNull
+    @Size(min = 6, max = 6, message = "lotteryNumber must be 6 digits")
+    @Pattern(regexp = "^[0-9]{6}$", message = "lotteryNumber must be 6 numeric digits")
     private String ticketid;
+
+    @NotNull
+    @Positive
+    private Integer price;
 
     public UserTicket() {
     }
 
-    public UserTicket(Integer userid, String ticketid) {
-        this.userid = userid;
-        this.ticketid = ticketid;
+    public UserTicket(Integer userId, String string, Integer ticketPrice) {
+        this.userid = userId;
+        this.ticketid = string;
+        this.price = ticketPrice;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getUserid() {
-        return userid;
-    }
-
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
-
-    public String getTicketid() {
-        return ticketid;
-    }
-
-    public void setTicketid(String ticketid) {
-        this.ticketid = ticketid;
-    }
 }

@@ -1,4 +1,4 @@
-package com.kbtg.bootcamp.posttest.controller;
+package com.kbtg.bootcamp.posttest.request;
 
 
 import jakarta.validation.constraints.NotNull;

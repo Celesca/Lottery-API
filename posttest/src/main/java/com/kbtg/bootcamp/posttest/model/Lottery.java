@@ -1,15 +1,14 @@
 package com.kbtg.bootcamp.posttest.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.List;
-
+@Setter
+@Getter
 @Entity
-@Table(name = "Lottery")
+@Table(name = "lottery")
 public class Lottery {
 
     @Id
@@ -20,11 +19,10 @@ public class Lottery {
 
     @NotNull
     @Positive
-    @Size(min = 0)
     private Integer price;
 
     @NotNull
-    @Size(min = 0)
+    @Positive
     private Integer amount;
 
     public Lottery(){
@@ -38,27 +36,4 @@ public class Lottery {
         this.amount = amount;
     }
 
-    public String getTicketid() {
-        return ticketid;
-    }
-
-    public void setTicketid(String ticketid) {
-        this.ticketid = ticketid;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public Integer getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
 }

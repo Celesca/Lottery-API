@@ -1,6 +1,6 @@
-package com.kbtg.bootcamp.posttest.controller;
+package com.kbtg.bootcamp.posttest.admin;
 
-import com.kbtg.bootcamp.posttest.service.AdminService;
+import com.kbtg.bootcamp.posttest.request.createLotteryRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
