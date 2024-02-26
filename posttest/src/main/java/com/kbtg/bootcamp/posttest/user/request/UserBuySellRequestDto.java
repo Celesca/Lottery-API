@@ -19,4 +19,8 @@ public class UserBuySellRequestDto {
     public UserBuySellRequestDto() {
     }
 
+    public UserBuySellRequestDto(String userId, String ticketId) {
+        this.userId = userId;
+        this.ticketId = ticketId;
+    }
 }

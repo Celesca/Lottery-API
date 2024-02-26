@@ -13,4 +13,13 @@ public class UserGetMyLotteriesResponse {
     private Integer count;
     private Integer cost;
 
+    public UserGetMyLotteriesResponse() {
+    }
+
+    public UserGetMyLotteriesResponse(List<String> tickets, Integer count, Integer cost) {
+        this.tickets = tickets;
+        this.count = count;
+        this.cost = cost;
+    }
+
 }

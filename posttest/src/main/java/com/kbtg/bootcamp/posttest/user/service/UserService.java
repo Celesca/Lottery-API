@@ -60,6 +60,7 @@ public class UserService {
         userTicketRepository.save(transaction);
 
         lottery.setAmount(lottery.getAmount() - 1);
+
         if (lottery.getAmount() <= 0) {
             lotteryRepository.delete(lottery);
         }
@@ -85,12 +86,7 @@ public class UserService {
             totalAmount += userTicket.getPrice();
         }
 
-        UserGetMyLotteriesResponse response = new UserGetMyLotteriesResponse();
-        response.setTickets(currentuserTickets);
-        response.setCost(totalAmount);
-        response.setCount(currentuserTickets.size());
-
-        return response;
+        return new UserGetMyLotteriesResponse(currentuserTickets, totalAmount, userTickets.size());
     }
 
     // Sell back my lottery ticket
