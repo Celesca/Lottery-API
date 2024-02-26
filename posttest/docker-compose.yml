@@ -13,25 +13,25 @@ services:
       - "5432:5432"
     volumes:
       - ./db-prepare/init.sql:/docker-entrypoint-initdb.d/init.sql
-#    networks:
-#      - lottery-network
+    networks:
+      - lottery-network
 
-#  lottery-app:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    restart: on-failure
-#    ports:
-#      - "8888:8888"
-#    depends_on:
-#        - db
-#    networks:
-#        - lottery-network
-#    environment:
-#        SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/lottery
-#        SPRING_DATASOURCE_USERNAME: user
-#        SPRING_DATASOURCE_PASSWORD: password
-#
-#networks:
-#    lottery-network:
-#        driver: bridge
+  lottery-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "8888:8888"
+    depends_on:
+        - db
+    networks:
+        - lottery-network
+    environment:
+        SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/lottery
+        SPRING_DATASOURCE_USERNAME: user
+        SPRING_DATASOURCE_PASSWORD: password
+
+networks:
+    lottery-network:
+        driver: bridge

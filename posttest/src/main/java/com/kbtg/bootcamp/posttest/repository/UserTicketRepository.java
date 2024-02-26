@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface UserTicketRepository extends JpaRepository<UserTicket, Integer> {
 
-    @Transactional
-    @Query("SELECT t FROM UserTicket t WHERE t.userid = ?1")
-    List<UserTicket> findByUserId(String userId);
+	@Transactional
+	@Query("SELECT t FROM UserTicket t WHERE t.userid = ?1")
+	List<UserTicket> findByUserId(String userId);
 
-    @Transactional
-    @Query("SELECT t FROM UserTicket t WHERE t.userid = ?1 AND t.ticketid = ?2")
-    UserTicket findByUserIdAndTicketId(String userId, String ticketId);
+	@Transactional
+	@Query("SELECT t FROM UserTicket t WHERE t.userid = ?1 AND t.ticketid = ?2")
+	UserTicket findByUserIdAndTicketId(String userId, String ticketId);
 }

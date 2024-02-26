@@ -14,30 +14,30 @@ import lombok.Setter;
 @Table(name = "user_ticket")
 public class UserTicket {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    @NotNull
-    @Size(min = 10, max = 10, message = "userid must be 10 digits")
-    private String userid;
+	@NotNull
+	@Size(min = 10, max = 10, message = "userid must be 10 digits")
+	private String userid;
 
-    @NotNull
-    @Size(min = 6, max = 6, message = "lotteryNumber must be 6 digits")
-    @Pattern(regexp = "^[0-9]{6}$", message = "lotteryNumber must be 6 numeric digits")
-    private String ticketid;
+	@NotNull
+	@Size(min = 6, max = 6, message = "lotteryNumber must be 6 digits")
+	@Pattern(regexp = "^[0-9]{6}$", message = "lotteryNumber must be 6 numeric digits")
+	private String ticketid;
 
-    @NotNull
-    @Positive
-    private Integer price;
+	@NotNull
+	@Positive
+	private Integer price;
 
-    public UserTicket() {
-    }
+	public UserTicket() {
+	}
 
-    public UserTicket(String userId, String string, Integer ticketPrice) {
-        this.userid = userId;
-        this.ticketid = string;
-        this.price = ticketPrice;
-    }
+	public UserTicket(String userId, String string, Integer ticketPrice) {
+		this.userid = userId;
+		this.ticketid = string;
+		this.price = ticketPrice;
+	}
 
 }

@@ -7,10 +7,10 @@ import lombok.Setter;
 @Getter
 public class UserBuyLotteriesResponse {
 
-    public Integer id;
+	public Integer id;
 
-    public UserBuyLotteriesResponse(Integer transactionId) {
-        setId(transactionId);
-    }
+	public UserBuyLotteriesResponse(Integer transactionId) {
+		setId(transactionId);
+	}
 
 }

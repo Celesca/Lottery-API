@@ -6,10 +6,10 @@ import lombok.Setter;
 @Setter
 @Getter
 public class UserSellLotteriesResponse {
-    private String ticket;
+	private String ticket;
 
-    public UserSellLotteriesResponse(String ticket) {
-        setTicket(ticket);
-    }
+	public UserSellLotteriesResponse(String ticket) {
+		setTicket(ticket);
+	}
 
 }
